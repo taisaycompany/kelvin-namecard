@@ -1,23 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Kelvin Sim - Operation Manager</title>
   <style>
     body {
       font-family: Arial, sans-serif;
       background: #f4f4f4;
       display: flex;
-      justify-content: center;
+      flex-direction: column;
       align-items: center;
+      justify-content: center;
       height: 100vh;
       margin: 0;
     }
+
     .card-container {
       perspective: 1000px;
-      position: relative;
     }
+
     .card {
       width: 300px;
       height: 180px;
@@ -25,16 +27,19 @@
       border-radius: 16px;
       box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
       transform-style: preserve-3d;
-      transition: transform 0.2s ease-out; /* Smooth transition */
-      transform-origin: center; /* Center the rotation */
+      transition: transform 0.2s ease-out;
+      transform-origin: center;
       position: relative;
     }
-    .card .front, .card .back {
+
+    .card .front,
+    .card .back {
       position: absolute;
       width: 100%;
       height: 100%;
       backface-visibility: hidden;
     }
+
     .card .front {
       background-color: #007bff;
       color: white;
@@ -44,56 +49,57 @@
       justify-content: center;
       padding: 10px;
     }
+
     .card .front img {
       width: 80px;
       height: 80px;
       border-radius: 50%;
       margin-bottom: 15px;
     }
+
     .card .back {
       background-color: #ff0000;
       color: white;
-      transform: rotateY(180deg); /* Initially hidden behind the front */
+      transform: rotateY(180deg);
       padding: 15px;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
     }
+
     .card .back a {
       color: white;
       text-decoration: none;
       margin: 10px 0;
       font-weight: bold;
     }
+
     .card .back a:hover {
       color: #007bff;
     }
 
-    /* Flip Button */
+    /* Flip Button BELOW the card */
     .flip-button {
-      position: absolute;
-      bottom: -30px; /* Move the button below the card */
-      left: 50%;
-      transform: translateX(-50%); /* Center the button horizontally */
+      margin-top: 20px;
       background-color: #007bff;
       color: white;
       border: none;
-      width: 50px;  /* Set width */
-      height: 50px; /* Set height equal to width to make it round */
-      border-radius: 50%; /* Ensure it's round */
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
       cursor: pointer;
-      font-size: 24px;  /* Adjust font size to fit within the circle */
+      font-size: 24px;
       box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-      transition: none; /* Remove hover effect */
     }
 
     .flip-button:hover {
-      background-color: #0056b3; /* Change color on hover */
+      background-color: #0056b3;
     }
   </style>
 </head>
 <body>
+
   <div class="card-container">
     <div class="card" id="card">
       <!-- Front Side -->
@@ -109,15 +115,15 @@
         <a href="mailto:kelvin@taisay.my">📧 Email Me</a>
       </div>
     </div>
-    <!-- Flip Button -->
-    <button class="flip-button" id="flipButton">↻</button>
   </div>
+
+  <!-- Flip Button below card -->
+  <button class="flip-button" id="flipButton">↻</button>
 
   <script>
     const card = document.getElementById('card');
     const flipButton = document.getElementById('flipButton');
 
-    // Function to flip the card
     flipButton.addEventListener('click', () => {
       card.classList.toggle('flipped');
       if (card.classList.contains('flipped')) {
