@@ -27,6 +27,7 @@
       transform-style: preserve-3d;
       transition: transform 0.2s ease-out; /* Smooth transition */
       transform-origin: center; /* Center the rotation */
+      position: relative;
     }
     .card .front, .card .back {
       position: absolute;
@@ -72,9 +73,9 @@
     /* Flip Button */
     .flip-button {
       position: absolute;
-      top: 50%;
-      left: 100%;
-      transform: translateY(-50%);
+      bottom: -30px; /* Move the button below the card */
+      left: 50%;
+      transform: translateX(-50%); /* Center the button horizontally */
       background-color: #007bff;
       color: white;
       border: none;
@@ -85,7 +86,6 @@
       font-size: 24px;  /* Adjust font size to fit within the circle */
       box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
       transition: none; /* Remove hover effect */
-      margin-left: 20px; /* Move button slightly away from the card */
     }
 
     .flip-button:hover {
