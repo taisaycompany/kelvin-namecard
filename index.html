@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Kelvin Sim - Name Card</title>
   <style>
     body {
@@ -19,9 +19,9 @@
 
     .main-container {
       display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 20px;
+      gap: 10px;
+      align-items: flex-start;
+      position: relative;
       width: 100%;
       max-width: 800px;
     }
@@ -30,25 +30,22 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      width: 100%;
+      order: 2; /* Default order for desktop */
     }
 
     .card-container {
       perspective: 1000px;
-      width: 100%;
     }
 
     .card {
-      width: 100%;
-      height: 0;
-      padding-bottom: 57%; /* Maintain aspect ratio (approx 260/455) */
+      width: 455px;
+      height: 260px;
       position: relative;
       transform-style: preserve-3d;
       transition: transform 0.6s;
       border-radius: 12px;
       box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
-      max-width: 455px; /* Max size for desktop */
-      margin: 0 auto;
+      max-width: 100%;
     }
 
     .card .side {
@@ -57,8 +54,6 @@
       height: 100%;
       backface-visibility: hidden;
       border-radius: 12px;
-      top: 0;
-      left: 0;
     }
 
     .card .front {
@@ -101,15 +96,16 @@
       display: flex;
       flex-direction: column;
       gap: 10px;
-      width: 100%;
-      max-width: 120px;
+      width: 120px;
+      margin-left: 10px;
+      order: 1; /* Default order for desktop */
     }
 
     .action-button {
       background-color: #0d1335;
       color: white;
       border: none;
-      width: 100%;
+      width: 120px;
       height: 40px;
       border-radius: 4px;
       font-size: 14px;
@@ -126,32 +122,27 @@
       transform: translateX(5px);
     }
 
-    @media (min-width: 768px) {
+    /* Mobile layout */
+    @media (max-width: 767px) {
       .main-container {
-        flex-direction: row;
-        align-items: flex-start;
-        gap: 10px;
+        flex-direction: column;
+        gap: 15px;
+      }
+      .card-flip-container {
+        order: 2; /* Moves below buttons */
       }
       .action-buttons {
-        margin-left: 10px;
-      }
-    }
-
-    @media (max-width: 480px) {
-      .card {
-        padding-bottom: 70%; /* Slightly taller aspect ratio for mobile */
-      }
-      .action-buttons {
+        order: 1; /* Moves to top */
+        margin-left: 0;
+        width: 100%;
         flex-direction: row;
         flex-wrap: wrap;
         justify-content: center;
-        max-width: 100%;
         gap: 8px;
       }
       .action-button {
         width: calc(50% - 4px);
-        font-size: 12px;
-        height: 36px;
+        font-size: 13px;
       }
     }
   </style>
@@ -159,6 +150,14 @@
 <body>
 
   <div class="main-container">
+    <div class="action-buttons">
+      <button class="action-button" id="callBtn">Call Me</button>
+      <button class="action-button" id="emailBtn">Email Me</button>
+      <button class="action-button" id="office1Btn">Find Office 1</button>
+      <button class="action-button" id="office2Btn">Find Office 2</button>
+      <button class="action-button" id="catalogueBtn">F&N Catalogue</button>
+    </div>
+
     <div class="card-flip-container">
       <div class="card-container">
         <div class="card" id="nameCard">
@@ -167,14 +166,6 @@
         </div>
       </div>
       <button class="flip-button" id="flipBtn">↻</button>
-    </div>
-
-    <div class="action-buttons">
-      <button class="action-button" id="callBtn">Call Me</button>
-      <button class="action-button" id="emailBtn">Email Me</button>
-      <button class="action-button" id="office1Btn">Find Office 1</button>
-      <button class="action-button" id="office2Btn">Find Office 2</button>
-      <button class="action-button" id="catalogueBtn">F&N Catalogue</button>
     </div>
   </div>
 
