@@ -8,12 +8,24 @@
     body {
       background: #f2f2f2;
       display: flex;
-      flex-direction: column;
-      align-items: center;
       justify-content: center;
+      align-items: center;
       height: 100vh;
       margin: 0;
       font-family: sans-serif;
+    }
+
+    .main-container {
+      display: flex;
+      gap: 10px; /* Reduced from 20px to 10px */
+      align-items: flex-start;
+      position: relative;
+    }
+
+    .card-flip-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
     }
 
     .card-container {
@@ -21,8 +33,8 @@
     }
 
     .card {
-      width: 350px;
-      height: 200px;
+      width: 455px;
+      height: 260px;
       position: relative;
       transform-style: preserve-3d;
       transition: transform 0.6s;
@@ -56,8 +68,7 @@
     }
 
     .flip-button {
-      margin-top: 25px;
-      background-color: #007bff;
+      background-color: #0d1335;
       color: white;
       border: none;
       width: 50px;
@@ -65,31 +76,99 @@
       border-radius: 50%;
       font-size: 24px;
       cursor: pointer;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+      margin-top: 20px;
+      transition: all 0.3s ease;
     }
 
     .flip-button:hover {
-      background-color: #0056b3;
+      background-color: #1a237e;
+      transform: scale(1.05);
+    }
+
+    .action-buttons {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      width: 120px;
+      margin-left: 10px; /* Reduced from 20px to 10px */
+    }
+
+    .action-button {
+      background-color: #0d1335;
+      color: white;
+      border: none;
+      width: 120px;
+      height: 40px;
+      border-radius: 4px;
+      font-size: 14px;
+      cursor: pointer;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+      text-align: center;
+      padding: 5px;
+      box-sizing: border-box;
+      transition: all 0.3s ease;
+    }
+
+    .action-button:hover {
+      background-color: #1a237e;
+      transform: translateX(5px);
     }
   </style>
 </head>
 <body>
 
-  <div class="card-container">
-    <div class="card" id="nameCard">
-      <div class="side front"></div>
-      <div class="side back"></div>
+  <div class="main-container">
+    <div class="card-flip-container">
+      <div class="card-container">
+        <div class="card" id="nameCard">
+          <div class="side front"></div>
+          <div class="side back"></div>
+        </div>
+      </div>
+      <button class="flip-button" id="flipBtn">↻</button>
+    </div>
+
+    <div class="action-buttons">
+      <button class="action-button" id="callBtn">Call Me</button>
+      <button class="action-button" id="emailBtn">Email Me</button>
+      <button class="action-button" id="office1Btn">Find Office 1</button>
+      <button class="action-button" id="office2Btn">Find Office 2</button>
+      <button class="action-button" id="catalogueBtn">F&N Catalogue</button>
     </div>
   </div>
-
-  <button class="flip-button" id="flipBtn">↻</button>
 
   <script>
     const card = document.getElementById('nameCard');
     const flipBtn = document.getElementById('flipBtn');
+    const callBtn = document.getElementById('callBtn');
+    const emailBtn = document.getElementById('emailBtn');
+    const office1Btn = document.getElementById('office1Btn');
+    const office2Btn = document.getElementById('office2Btn');
+    const catalogueBtn = document.getElementById('catalogueBtn');
 
     flipBtn.addEventListener('click', () => {
       card.classList.toggle('flipped');
+    });
+
+    callBtn.addEventListener('click', () => {
+      window.location.href = "tel:+60178345600";
+    });
+
+    emailBtn.addEventListener('click', () => {
+      window.location.href = "mailto:kelvin@taisay.my";
+    });
+
+    office1Btn.addEventListener('click', () => {
+      window.open("https://www.google.com/maps/search/?api=1&query=1009+Jalan+Tenun,+93450+Kuching", '_blank');
+    });
+
+    office2Btn.addEventListener('click', () => {
+      window.open("https://www.google.com/maps/search/?api=1&query=Lot+2197+Jalan+Keruing,+Pending+Industrial+Estate,+93450+Kuching", '_blank');
+    });
+
+    catalogueBtn.addEventListener('click', () => {
+      window.open('https://github.com/taisaycompany/kelvin-namecard/blob/main/F&N%20Catalogue.jpg?raw=true', '_blank');
     });
   </script>
 </body>
