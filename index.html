@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
   <title>Kelvin Sim - Name Card</title>
   <style>
     body {
@@ -10,36 +10,45 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      height: 100vh;
+      min-height: 100vh;
       margin: 0;
       font-family: sans-serif;
+      padding: 20px;
+      box-sizing: border-box;
     }
 
     .main-container {
       display: flex;
-      gap: 10px; /* Reduced from 20px to 10px */
-      align-items: flex-start;
-      position: relative;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+      width: 100%;
+      max-width: 800px;
     }
 
     .card-flip-container {
       display: flex;
       flex-direction: column;
       align-items: center;
+      width: 100%;
     }
 
     .card-container {
       perspective: 1000px;
+      width: 100%;
     }
 
     .card {
-      width: 455px;
-      height: 260px;
+      width: 100%;
+      height: 0;
+      padding-bottom: 57%; /* Maintain aspect ratio (approx 260/455) */
       position: relative;
       transform-style: preserve-3d;
       transition: transform 0.6s;
       border-radius: 12px;
       box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+      max-width: 455px; /* Max size for desktop */
+      margin: 0 auto;
     }
 
     .card .side {
@@ -48,6 +57,8 @@
       height: 100%;
       backface-visibility: hidden;
       border-radius: 12px;
+      top: 0;
+      left: 0;
     }
 
     .card .front {
@@ -90,15 +101,15 @@
       display: flex;
       flex-direction: column;
       gap: 10px;
-      width: 120px;
-      margin-left: 10px; /* Reduced from 20px to 10px */
+      width: 100%;
+      max-width: 120px;
     }
 
     .action-button {
       background-color: #0d1335;
       color: white;
       border: none;
-      width: 120px;
+      width: 100%;
       height: 40px;
       border-radius: 4px;
       font-size: 14px;
@@ -113,6 +124,35 @@
     .action-button:hover {
       background-color: #1a237e;
       transform: translateX(5px);
+    }
+
+    @media (min-width: 768px) {
+      .main-container {
+        flex-direction: row;
+        align-items: flex-start;
+        gap: 10px;
+      }
+      .action-buttons {
+        margin-left: 10px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .card {
+        padding-bottom: 70%; /* Slightly taller aspect ratio for mobile */
+      }
+      .action-buttons {
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+        max-width: 100%;
+        gap: 8px;
+      }
+      .action-button {
+        width: calc(50% - 4px);
+        font-size: 12px;
+        height: 36px;
+      }
     }
   </style>
 </head>
