@@ -30,7 +30,7 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      order: 1;
+      order: 1; /* Card on left by default */
     }
 
     .card-container {
@@ -98,7 +98,7 @@
       gap: 10px;
       width: 120px;
       margin-left: 10px;
-      order: 2;
+      order: 2; /* Buttons on right by default */
     }
 
     .action-button {
@@ -131,28 +131,25 @@
       
       .action-buttons {
         flex-direction: row;
-        flex-wrap: nowrap; /* Prevent wrapping */
+        flex-wrap: wrap;
         justify-content: center;
         width: 100%;
-        overflow-x: auto; /* Enable horizontal scrolling if needed */
         margin-left: 0;
-        gap: 6px;
-        order: 1;
-        padding-bottom: 10px; /* Space for scroll if needed */
+        gap: 8px;
+        order: 1; /* Buttons on top in mobile */
       }
       
       .card-flip-container {
-        order: 2;
+        order: 2; /* Card below buttons in mobile */
       }
       
       .action-button {
         width: auto;
-        flex: 0 0 auto; /* Don't grow or shrink */
-        min-width: 80px; /* Smaller minimum width */
-        font-size: 11px; /* Smaller font */
-        height: 32px; /* Smaller height */
-        padding: 2px 5px; /* Tighter padding */
-        white-space: nowrap; /* Prevent text wrapping */
+        flex: 1;
+        min-width: 100px;
+        font-size: 12px;
+        height: 36px;
+        padding: 5px 8px;
       }
     }
   </style>
@@ -171,8 +168,8 @@
     </div>
 
     <div class="action-buttons">
-      <button class="action-button" id="callBtn">Call</button>
-      <button class="action-button" id="emailBtn">Email</button>
+      <button class="action-button" id="callBtn">Call Me</button>
+      <button class="action-button" id="emailBtn">Email Me</button>
       <button class="action-button" id="office1Btn">Office 1</button>
       <button class="action-button" id="office2Btn">Office 2</button>
       <button class="action-button" id="catalogueBtn">F&N Catalogue</button>
