@@ -3,17 +3,17 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Kelvin Sim - Operation Manager</title>
+  <title>Kelvin Sim - Name Card</title>
   <style>
     body {
-      font-family: Arial, sans-serif;
-      background: #f4f4f4;
+      background: #f2f2f2;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
       height: 100vh;
       margin: 0;
+      font-family: sans-serif;
     }
 
     .card-container {
@@ -21,76 +21,51 @@
     }
 
     .card {
-      width: 300px;
-      height: 180px;
-      background-color: #ffffff;
-      border-radius: 16px;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-      transform-style: preserve-3d;
-      transition: transform 0.2s ease-out;
-      transform-origin: center;
+      width: 350px;
+      height: 200px;
       position: relative;
+      transform-style: preserve-3d;
+      transition: transform 0.6s;
+      border-radius: 12px;
+      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
     }
 
-    .card .front,
-    .card .back {
+    .card .side {
       position: absolute;
       width: 100%;
       height: 100%;
       backface-visibility: hidden;
+      border-radius: 12px;
     }
 
     .card .front {
-      background-color: #007bff;
-      color: white;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      padding: 10px;
-    }
-
-    .card .front img {
-      width: 80px;
-      height: 80px;
-      border-radius: 50%;
-      margin-bottom: 15px;
+      background-image: url('https://github.com/taisaycompany/kelvin-namecard/blob/main/1.png?raw=true');
+      background-size: cover;
+      background-position: center;
     }
 
     .card .back {
-      background-color: #ff0000;
-      color: white;
+      background-image: url('https://github.com/taisaycompany/kelvin-namecard/blob/main/2.png?raw=true');
+      background-size: cover;
+      background-position: center;
       transform: rotateY(180deg);
-      padding: 15px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
     }
 
-    .card .back a {
-      color: white;
-      text-decoration: none;
-      margin: 10px 0;
-      font-weight: bold;
+    .card.flipped {
+      transform: rotateY(180deg);
     }
 
-    .card .back a:hover {
-      color: #007bff;
-    }
-
-    /* Flip Button BELOW the card */
     .flip-button {
-      margin-top: 20px;
+      margin-top: 25px;
       background-color: #007bff;
       color: white;
       border: none;
       width: 50px;
       height: 50px;
       border-radius: 50%;
-      cursor: pointer;
       font-size: 24px;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+      cursor: pointer;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
     }
 
     .flip-button:hover {
@@ -101,36 +76,20 @@
 <body>
 
   <div class="card-container">
-    <div class="card" id="card">
-      <!-- Front Side -->
-      <div class="front">
-        <img src="https://scontent.fkch3-1.fna.fbcdn.net/v/t39.30808-6/204011330_4363309407060031_3805637710168194162_n.png?_nc_cat=103&ccb=1-7&_nc_sid=6ee11a&_nc_eui2=AeH3f_dDAfXXphIUqYZ6tZT126UGvMVJaujbpQa8xUlq6L4BBolpR9FVarPCXvjjKvM&_nc_ohc=NztqGTIDxAwQ7kNvwEK_48K&_nc_oc=AdlPD9yb_7dh9zMxOb7igVe0dqlsakllnkYuiFuYHQxSwGFQ0TVGNx2vvu-cXFYhtjOp2Zqyx5aGbgAtbVWUUOUV&_nc_zt=23&_nc_ht=scontent.fkch3-1.fna&_nc_gid=-qszrWwzixXXo6qXbyCDGQ&oh=00_AfFW8sjMzVn9lVJVUebOfLjOXb0OCTY-_cqEsM4BtMmomQ&oe=680E290A" alt="Kelvin Sim">
-        <h2>Kelvin Sim</h2>
-        <p>Operation Manager</p>
-      </div>
-      <!-- Back Side -->
-      <div class="back">
-        <a href="tel:+60178345600">📞 Call Me</a>
-        <a href="https://wa.me/60178345600">💬 WhatsApp Me</a>
-        <a href="mailto:kelvin@taisay.my">📧 Email Me</a>
-      </div>
+    <div class="card" id="nameCard">
+      <div class="side front"></div>
+      <div class="side back"></div>
     </div>
   </div>
 
-  <!-- Flip Button below card -->
-  <button class="flip-button" id="flipButton">↻</button>
+  <button class="flip-button" id="flipBtn">↻</button>
 
   <script>
-    const card = document.getElementById('card');
-    const flipButton = document.getElementById('flipButton');
+    const card = document.getElementById('nameCard');
+    const flipBtn = document.getElementById('flipBtn');
 
-    flipButton.addEventListener('click', () => {
+    flipBtn.addEventListener('click', () => {
       card.classList.toggle('flipped');
-      if (card.classList.contains('flipped')) {
-        card.style.transform = 'rotateY(180deg)';
-      } else {
-        card.style.transform = 'rotateY(0deg)';
-      }
     });
   </script>
 </body>
